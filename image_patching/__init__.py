@@ -1,0 +1,1 @@
+from image_patching.extractor import PatchExtractor
