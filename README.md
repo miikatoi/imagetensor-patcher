@@ -26,5 +26,11 @@ print(batch.shape)
 print(patches_batch.shape)
 print(reconstructed_images_batch.shape)
 
+"""
+torch.Size([32, 3, 512, 512])
+torch.Size([512, 3, 128, 128])
+torch.Size([32, 3, 512, 512])
+"""
+
 ```
 
