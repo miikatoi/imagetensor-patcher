@@ -49,6 +49,11 @@ class TestPatchExtractor(unittest.TestCase):
         patches = torch.rand((self.bs * self.np, self.nc, self.ps, self.ps))
         self.assertRaises(ValueError, lambda: self.extractor.reconstruct_image(patches))
 
+    def test_batch_size_mismatch(self):
+        self.extractor.split_to_patches(self.x)
+        x = torch.rand((self.bs + 2, self.nc, self.s, self.s))
+        reconstruction = self.extractor.reconstruct_image(self.extractor.split_to_patches(x))
+
 
 if __name__ == '__main__':
 

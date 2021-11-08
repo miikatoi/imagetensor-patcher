@@ -63,7 +63,7 @@ class PatchExtractor:
         # Input: (N, C × ∏(kernel_size), L) -> (bs, nc * ps * ps, np) 
         # Output: (N, C, output_shape[0], output_shape[1], ...) -> (bs, nc, h, w)
         
-        reordered = patches.reshape(self.np, self.bs, self.nc * self.ps * self.ps).permute(1, 2, 0)
+        reordered = patches.reshape(self.np, -1, self.nc * self.ps * self.ps).permute(1, 2, 0)          # self.bs           -> -1
         images = torch.nn.functional.fold(reordered, output_size=(self.size, self.size), kernel_size=self.ps, stride=self.ps)
 
         return images
